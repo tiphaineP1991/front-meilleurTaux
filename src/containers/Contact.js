@@ -73,7 +73,7 @@ const Contact = ({ setPage, inputState, setInputState, setId }) => {
         <button className="gobackButton">
           <p onClick={() => setPage("amount")}>Précédent</p>
         </button>
-        <ProgressBar percentage={100} />
+        <ProgressBar percentage={93} />
         {isChecked === true && inputState.email ? (
           <button
             className="nextStepButton"

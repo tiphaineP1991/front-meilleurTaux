@@ -70,7 +70,6 @@ const Location = ({ setPage, setInputState, inputState }) => {
                   value={zipCode}
                   onChange={event => {
                     setzipCode(event.target.value);
-                    setInputState({ ...inputState, zipCode: zipCode });
                   }}
                 >
                   {dropdown}
@@ -85,11 +84,12 @@ const Location = ({ setPage, setInputState, inputState }) => {
           <p onClick={() => setPage("situation")}>Précédent</p>
         </button>
         <ProgressBar percentage={72} />
-        {inputState.zipCode ? (
+        {zipCode ? (
           <button
             className="nextStepButton"
             onClick={() => {
               setPage("amount");
+              setInputState({ ...inputState, zipCode: zipCode });
             }}
           >
             <p>Suivant</p>

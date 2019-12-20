@@ -20,7 +20,7 @@ const BackOffice = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [forms]);
 
   return (
     <div className="page">
