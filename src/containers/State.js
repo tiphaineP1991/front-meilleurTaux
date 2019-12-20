@@ -7,10 +7,8 @@ import ProgressBar from "../components/ProgressBar";
 const State = ({ setPage, setInputState, inputState }) => {
   const value1 = "Ancien";
   const value2 = "Neuf";
-  const [isChecked, setIsChecked] = useState("");
 
   const handleChange = event => {
-    setIsChecked(event.target.value);
     Cookies.set("state", event.target.value);
     setInputState({ ...inputState, state: event.target.value });
     setPage("use");
@@ -27,12 +25,12 @@ const State = ({ setPage, setInputState, inputState }) => {
       <div className="lineButton">
         <RadioButton
           value={value1}
-          isChecked={isChecked}
+          isChecked={inputState.state}
           handleChange={handleChange}
         />
         <RadioButton
           value={value2}
-          isChecked={isChecked}
+          isChecked={inputState.state}
           handleChange={handleChange}
         />
       </div>

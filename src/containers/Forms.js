@@ -28,6 +28,9 @@ const BackOffice = () => {
         <p>Chargement en cours</p>
       ) : (
         <div>
+          <div className="title">
+            <p className="pageTitle">liste des formulaires reçus</p>
+          </div>
           <div>
             <div className="table">
               <div className="lineHeader">

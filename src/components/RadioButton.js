@@ -8,17 +8,13 @@ const RadioButton = ({ handleChange, value, isChecked }) => {
   const cookieSituation = Cookies.get("situation");
 
   return (
-    <label className="radioButton">
+    <label
+      className={value !== isChecked ? "radioButton" : "radioButtonOrange"}
+    >
       <input
         type="radio"
         value={value}
-        checked={
-          isChecked === value ||
-          cookieType === value ||
-          cookieState === value ||
-          cookieUse === value ||
-          cookieSituation === value
-        }
+        checked={isChecked === value}
         onChange={handleChange}
       />
       {value}

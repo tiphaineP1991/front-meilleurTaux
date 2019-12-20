@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import Cookies from "js-cookie";
 
 const End = ({ setPage, id }) => {
   return (
@@ -7,12 +7,19 @@ const End = ({ setPage, id }) => {
       <div className="title">
         <p className="pageTitle">Et voilà, le formulaire est terminé !</p>
       </div>
-      <div>
+      <div className="end">
         <p>Votre id est : {id}</p>
       </div>
-      <div className="navButtons">
-        <button className="gobackButton">
-          <p onClick={() => setPage("contact")}>Précédent</p>
+      <div className="homeReturn">
+        <button className="goBackButton">
+          <p
+            onClick={() => {
+              setPage("home");
+              Cookies.remove("returnPage");
+            }}
+          >
+            Retour
+          </p>
         </button>
       </div>
     </div>

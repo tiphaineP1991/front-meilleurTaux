@@ -8,10 +8,8 @@ const Use = ({ setPage, setInputState, inputState }) => {
   const value1 = "résidence principale";
   const value2 = "résidence secondaire";
   const value3 = "investissement locatif";
-  const [isChecked, setIsChecked] = useState("");
 
   const handleChange = event => {
-    setIsChecked(event.target.value);
     Cookies.set("use", event.target.value);
     setInputState({ ...inputState, use: event.target.value });
     setPage("situation");
@@ -28,17 +26,17 @@ const Use = ({ setPage, setInputState, inputState }) => {
       <div className="lineButton">
         <RadioButton
           value={value1}
-          isChecked={isChecked}
+          isChecked={inputState.use}
           handleChange={handleChange}
         />
         <RadioButton
           value={value2}
-          isChecked={isChecked}
+          isChecked={inputState.use}
           handleChange={handleChange}
         />
         <RadioButton
           value={value3}
-          isChecked={isChecked}
+          isChecked={inputState.use}
           handleChange={handleChange}
         />
       </div>

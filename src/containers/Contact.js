@@ -4,6 +4,7 @@ import Email from "../images/email.jpg";
 import axios from "axios";
 import Url from "../Url";
 import ProgressBar from "../components/ProgressBar";
+import Cookies from "js-cookie";
 
 const Contact = ({ setPage, inputState, setInputState, setId }) => {
   const [email, setEmail] = useState("");
@@ -78,6 +79,7 @@ const Contact = ({ setPage, inputState, setInputState, setId }) => {
           onClick={() => {
             setPage("end");
             fetchData();
+            Cookies.remove("returnData");
           }}
         >
           <p>Valider</p>
