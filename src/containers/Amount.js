@@ -37,12 +37,12 @@ const Amount = ({ setPage, setInputState, inputState }) => {
         />
         <QuestionInput
           question={"Frais de notaire *"}
-          value={notarialFees.toFixed(2)}
+          value={notarialFees.toFixed(0)}
           func={null}
         />
         <QuestionInput
           question={"Total *"}
-          value={total.toFixed(2)}
+          value={total.toFixed(0)}
           func={null}
         />
       </div>

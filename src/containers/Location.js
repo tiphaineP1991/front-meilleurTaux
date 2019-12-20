@@ -26,7 +26,7 @@ const Location = ({ setPage, setInputState, inputState }) => {
     tab.push(city);
   }
 
-  const dropdown = [];
+  const dropdown = [<option value={undefined}>{undefined}</option>];
   for (let i = 0; i < tab.length; i++) {
     dropdown.push(<option value={tab[i]}>{tab[i]}</option>);
   }
