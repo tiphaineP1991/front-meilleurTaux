@@ -6,7 +6,7 @@ const QuestionInput = ({ question, value, func }) => {
     <div className="question">
       <p>{question}</p>
       <div className="reponse">
-        <div className="icon">
+        <div className="icon" alt="iconInfo">
           <img className="info" src={Info}></img>
         </div>
         <input type="number" value={value} onChange={func}></input>

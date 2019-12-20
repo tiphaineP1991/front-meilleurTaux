@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Url from "../Url";
 import { Link } from "react-router-dom";
+import cardLine from "../components/CardLine";
+import CardLine from "../components/CardLine";
+import form from "./Login";
 
 const Form = () => {
   const { id } = useParams();
@@ -42,7 +45,7 @@ const Form = () => {
         <p>Chargement en cours</p>
       ) : (
         <div className="page">
-          <Link to="/forms">
+          <Link to="/form">
             <div className="goBack">
               <button className="goBackButton">Retour</button>
             </div>
@@ -54,58 +57,38 @@ const Form = () => {
             <div>ID DE LA DEMANDE : {form._id}</div>
             <div className="formTitle">LE BIEN : </div>
             <div className="cardLine">
-              <div className="category">
-                <div className="subtitle">Type de bien</div>
-                <div>{form.type} </div>
-              </div>
-              <div className="category">
-                <div className="subtitle">Etat du bien</div>
-                <div>{form.state} </div>
-              </div>
-              <div className="category">
-                <div className="subtitle">Usage du bien</div>
-                <div>{form.use} </div>
-              </div>
+              <CardLine element={form.type} subtitle={"Type de bien"} />
+              <CardLine element={form.state} subtitle={"Etat du bien"} />
+              <CardLine element={form.use} subtitle={"Usage du bien"} />
             </div>
             <div className="formTitle">LE DEMANDEUR : </div>
             <div className="cardLine">
-              <div className="category">
-                <div className="subtitle">Situation du demandeur</div>
-                <div>{form.situation} </div>
-              </div>
-              <div className="category">
-                <div className="subtitle">Email</div>
-                <div>{form.email} </div>
-              </div>
+              <CardLine
+                element={form.situation}
+                subtitle={"Situation du demandeur"}
+              />
+              <CardLine element={form.email} subtitle={"Email"} />
             </div>
             <div className="formTitle">LOCALISATION : </div>
             <div className="cardLine">
-              <div className="category">
-                <div>{form.zipCode}</div>
-              </div>
+              <CardLine element={form.zipCode} />
             </div>
             <div className="formTitle">MONTANT DE L'EMPRUNT : </div>
             <div className="cardLine">
-              <div className="category">
-                <div className="subtitle">ACQUISITION</div>
-                <div>{form.amount.estimated} €</div>
-              </div>
-              <div className="category">
-                <div className="subtitle">TRAVAUX</div>
-                <div>{form.amount.works} €</div>
-              </div>
-              <div className="category">
-                <div className="subtitle">FRAIS de NOTAIRE</div>
-                <div>{form.amount.notarialFees} €</div>
-              </div>
-              <div className="category">
-                <div className="subtitle">total</div>
-                <div>{form.amount.total} €</div>
-              </div>
+              <CardLine
+                element={form.amount.estimated}
+                subtitle={"ACQUISITION"}
+              />
+              <CardLine element={form.amount.works} subtitle={"TRAVAUX"} />
+              <CardLine
+                element={form.amount.notarialFees}
+                subtitle={"FRAIS DE NOTAIRE"}
+              />
+              <CardLine element={form.amount.total} subtitle={"TOTAL"} />
             </div>
           </div>
           <div className="delete">
-            <Link to="/forms">
+            <Link to="/form">
               <span
                 className="deleteButton"
                 onClick={() => {

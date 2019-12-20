@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Info from "../images/info.svg";
 import axios from "axios";
-import ProgressBar from "../components/ProgressBar";
+import Footer from "../components/Footer";
 
 const Location = ({ setPage, setInputState, inputState }) => {
   const [zipCode, setzipCode] = useState(inputState.zipCode);
@@ -79,27 +79,15 @@ const Location = ({ setPage, setInputState, inputState }) => {
           </div>
         </div>
       </div>
-      <div className="navButtons">
-        <button className="gobackButton">
-          <p onClick={() => setPage("situation")}>Précédent</p>
-        </button>
-        <ProgressBar percentage={72} />
-        {zipCode ? (
-          <button
-            className="nextStepButton"
-            onClick={() => {
-              setPage("amount");
-              setInputState({ ...inputState, zipCode: zipCode });
-            }}
-          >
-            <p>Suivant</p>
-          </button>
-        ) : (
-          <button className="nextStepButtonUnvalidate">
-            <p>Suivant</p>
-          </button>
-        )}
-      </div>
+      <Footer
+        percentage={72}
+        backFunc={() => setPage("situation")}
+        nextFunc={() => {
+          setPage("amount");
+          setInputState({ ...inputState, zipCode: zipCode });
+        }}
+        conditionValue={zipCode}
+      />
     </div>
   );
 };

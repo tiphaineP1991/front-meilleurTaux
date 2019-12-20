@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProgressBar from "../components/ProgressBar";
+import Footer from "../components/Footer";
 import QuestionInput from "../components/QuestionInput";
 
 const Amount = ({ setPage, setInputState, inputState }) => {
@@ -46,35 +46,23 @@ const Amount = ({ setPage, setInputState, inputState }) => {
           func={null}
         />
       </div>
-      <div className="navButtons">
-        <button className="gobackButton">
-          <p onClick={() => setPage("location")}>Précédent</p>
-        </button>
-        <ProgressBar percentage={89} />
-        {estimated > 0 ? (
-          <button
-            className="nextStepButton"
-            onClick={() => {
-              setPage("contact");
-              setInputState({
-                ...inputState,
-                amount: {
-                  estimated: estimated,
-                  works: works,
-                  notarialFees: notarialFees,
-                  total: total
-                }
-              });
-            }}
-          >
-            <p>Suivant</p>
-          </button>
-        ) : (
-          <button className="nextStepButtonUnvalidate">
-            <p>Suivant</p>
-          </button>
-        )}
-      </div>
+      <Footer
+        percentage={89}
+        backFunc={() => setPage("location")}
+        nextFunc={() => {
+          setPage("contact");
+          setInputState({
+            ...inputState,
+            amount: {
+              estimated: estimated,
+              works: works,
+              notarialFees: notarialFees,
+              total: total
+            }
+          });
+        }}
+        conditionValue={estimated}
+      />
     </div>
   );
 };

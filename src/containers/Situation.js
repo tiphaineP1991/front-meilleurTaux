@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import RadioButton from "../components/RadioButton";
 import Info from "../images/info.svg";
 import Cookies from "js-cookie";
-import ProgressBar from "../components/ProgressBar";
+import Footer from "../components/Footer";
 
 const Situation = ({ setPage, setInputState, inputState }) => {
   const value1 = "locataire";
@@ -46,24 +46,12 @@ const Situation = ({ setPage, setInputState, inputState }) => {
           handleChange={handleChange}
         />
       </div>
-      <div className="navButtons">
-        <button className="gobackButton">
-          <p onClick={() => setPage("use")}>Précédent</p>
-        </button>
-        <ProgressBar percentage={53} />
-        {inputState.situation ? (
-          <button
-            className="nextStepButton"
-            onClick={() => setPage("location")}
-          >
-            <p>Suivant</p>
-          </button>
-        ) : (
-          <button className="nextStepButtonUnvalidate">
-            <p>Suivant</p>
-          </button>
-        )}
-      </div>
+      <Footer
+        percentage={53}
+        backFunc={() => setPage("use")}
+        nextFunc={() => setPage("location")}
+        conditionValue={inputState.situation}
+      />
     </div>
   );
 };

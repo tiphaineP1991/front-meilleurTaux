@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import RadioButton from "../components/RadioButton";
 import Info from "../images/info.svg";
 import Cookies from "js-cookie";
-import ProgressBar from "../components/ProgressBar";
+import Footer from "../components/Footer";
 
 const Type = ({ setPage, setInputState, inputState }) => {
   const value1 = "Maison";
@@ -34,18 +34,11 @@ const Type = ({ setPage, setInputState, inputState }) => {
           isChecked={inputState.type}
         />
       </div>
-      <div className="navButtons">
-        <ProgressBar percentage={12} />
-        {inputState.type ? (
-          <button className="nextStepButton" onClick={() => setPage("state")}>
-            <p>Suivant</p>
-          </button>
-        ) : (
-          <button className="nextStepButtonUnvalidate">
-            <p>Suivant</p>
-          </button>
-        )}
-      </div>
+      <Footer
+        percentage={12}
+        nextFunc={() => setPage("state")}
+        conditionValue={inputState.type}
+      />
     </div>
   );
 };
