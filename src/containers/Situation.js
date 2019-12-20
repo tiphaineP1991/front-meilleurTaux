@@ -49,8 +49,11 @@ const Situation = ({ setPage, setInputState, inputState }) => {
       <Footer
         percentage={53}
         backFunc={() => setPage("use")}
-        nextFunc={() => setPage("location")}
-        conditionValue={inputState.situation}
+        nextFunc={() => {
+          if (inputState.situation) {
+            setPage("location");
+          }
+        }}
       />
     </div>
   );

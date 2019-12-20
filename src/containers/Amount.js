@@ -50,18 +50,19 @@ const Amount = ({ setPage, setInputState, inputState }) => {
         percentage={89}
         backFunc={() => setPage("location")}
         nextFunc={() => {
-          setPage("contact");
-          setInputState({
-            ...inputState,
-            amount: {
-              estimated: estimated,
-              works: works,
-              notarialFees: notarialFees,
-              total: total
-            }
-          });
+          if (estimated > 0) {
+            setPage("contact");
+            setInputState({
+              ...inputState,
+              amount: {
+                estimated: estimated,
+                works: works,
+                notarialFees: notarialFees,
+                total: total
+              }
+            });
+          }
         }}
-        conditionValue={estimated}
       />
     </div>
   );

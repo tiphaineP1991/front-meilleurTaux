@@ -83,10 +83,11 @@ const Location = ({ setPage, setInputState, inputState }) => {
         percentage={72}
         backFunc={() => setPage("situation")}
         nextFunc={() => {
-          setPage("amount");
-          setInputState({ ...inputState, zipCode: zipCode });
+          if (zipCode !== "") {
+            setPage("amount");
+            setInputState({ ...inputState, zipCode: zipCode });
+          }
         }}
-        conditionValue={zipCode}
       />
     </div>
   );

@@ -3,7 +3,7 @@ import Info from "../images/info.svg";
 import Email from "../images/email.jpg";
 import axios from "axios";
 import Url from "../Url";
-import ProgressBar from "../components/ProgressBar";
+import Footer from "../components/Footer";
 import Cookies from "js-cookie";
 
 const Contact = ({ setPage, inputState, setInputState, setId }) => {
@@ -69,28 +69,17 @@ const Contact = ({ setPage, inputState, setInputState, setId }) => {
           J'accepte de recevoir par email des propositions de MeilleurTaux.com *
         </label>
       </div>
-      <div className="navButtons">
-        <button className="gobackButton">
-          <p onClick={() => setPage("amount")}>Précédent</p>
-        </button>
-        <ProgressBar percentage={93} />
-        {isChecked === true && inputState.email ? (
-          <button
-            className="nextStepButton"
-            onClick={() => {
-              setPage("end");
-              fetchData();
-              Cookies.remove("returnData");
-            }}
-          >
-            <p>Valider</p>
-          </button>
-        ) : (
-          <button className="nextStepButtonUnvalidate">
-            <p>Valider</p>
-          </button>
-        )}
-      </div>
+      <Footer
+        percentage={93}
+        backFunc={() => setPage("amount")}
+        nextFunc={() => {
+          if (isChecked === true && inputState.email) {
+            setPage("end");
+            fetchData();
+            Cookies.remove("returnData");
+          }
+        }}
+      />
     </div>
   );
 };

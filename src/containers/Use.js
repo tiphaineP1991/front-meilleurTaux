@@ -43,8 +43,11 @@ const Use = ({ setPage, setInputState, inputState }) => {
       <Footer
         percentage={38}
         backFunc={() => setPage("state")}
-        nextFunc={() => setPage("situation")}
-        conditionValue={inputState.use}
+        nextFunc={() => {
+          if (inputState.use) {
+            setPage("situation");
+          }
+        }}
       />
     </div>
   );
