@@ -10,7 +10,6 @@ const RadioButton = ({ handleChange, value, isChecked }) => {
   return (
     <label className="radioButton">
       <input
-        className="rbInput"
         type="radio"
         value={value}
         checked={

@@ -13,9 +13,13 @@ import Situation from "./containers/Situation";
 import State from "./containers/State";
 import Type from "./containers/Type";
 import Use from "./containers/Use";
+import Forms from "./containers/Forms";
+import Login from "./containers/Login";
+import Form from "./containers/Form";
 
 const App = () => {
   const returnPage = Cookies.get("returnPage");
+  const [id, setId] = useState("");
 
   const [page, setPage] = useState(returnPage);
 
@@ -26,7 +30,7 @@ const App = () => {
     Cookies.set("returnPage", page);
   }
 
-  const returnData = Cookies.get("returnData");
+  const returnData = Cookies.getJSON("returnData");
   const [inputState, setInputState] = useState(returnData);
 
   const initialState = {
@@ -40,7 +44,9 @@ const App = () => {
       works: 0,
       notarialFees: 0,
       total: 0
-    }
+    },
+    email: "",
+    notification: false
   };
 
   if (returnData === undefined) {
@@ -50,12 +56,23 @@ const App = () => {
     Cookies.set("returnData", inputState);
   }
 
+  console.log("inputState ====>", inputState);
+
   return (
     <Router>
       <div className="App">
         <Header></Header>
         <div className="wrapper">
           <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/forms">
+              <Forms />
+            </Route>
+            <Route path="/form/:id">
+              <Form />
+            </Route>
             <Route path="/">
               {page === "type" ? (
                 <Type
@@ -71,6 +88,7 @@ const App = () => {
                   page={page}
                   setInputState={setInputState}
                   inputState={inputState}
+                  initialState={initialState}
                 />
               ) : null}
               {page === "use" ? (
@@ -103,7 +121,6 @@ const App = () => {
                   page={page}
                   setInputState={setInputState}
                   inputState={inputState}
-                  initialState={initialState}
                 />
               ) : null}
               {page === "contact" ? (
@@ -111,6 +128,7 @@ const App = () => {
                   setPage={setPage}
                   setInputState={setInputState}
                   inputState={inputState}
+                  setId={setId}
                 />
               ) : null}
               {page === "end" ? (
@@ -119,6 +137,7 @@ const App = () => {
                   page={page}
                   setInputState={setInputState}
                   inputState={inputState}
+                  id={id}
                 />
               ) : null}
             </Route>

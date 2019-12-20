@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RadioButton from "../components/RadioButton";
 import Info from "../images/info.svg";
 import Cookies from "js-cookie";
+import ProgressBar from "../components/ProgressBar";
 
 const State = ({ setPage, setInputState, inputState }) => {
   const value1 = "Ancien";
@@ -39,6 +40,7 @@ const State = ({ setPage, setInputState, inputState }) => {
         <button className="gobackButton">
           <p onClick={() => setPage("type")}>Précédent</p>
         </button>
+        <ProgressBar percentage={24} />
         <button className="nextStepButton" onClick={() => setPage("use")}>
           <p>Suivant</p>
         </button>

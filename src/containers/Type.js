@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RadioButton from "../components/RadioButton";
 import Info from "../images/info.svg";
 import Cookies from "js-cookie";
+import ProgressBar from "../components/ProgressBar";
 
 const Type = ({ setPage, setInputState, inputState }) => {
   const value1 = "Maison";
@@ -36,6 +37,7 @@ const Type = ({ setPage, setInputState, inputState }) => {
         />
       </div>
       <div className="navButtons">
+        <ProgressBar percentage={12} />
         <button className="nextStepButton" onClick={() => setPage("state")}>
           <p>Suivant</p>
         </button>

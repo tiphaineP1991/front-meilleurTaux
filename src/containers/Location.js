@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Info from "../images/info.svg";
 import axios from "axios";
+import ProgressBar from "../components/ProgressBar";
 
 const Location = ({ setPage, setInputState, inputState }) => {
-  const [codePostal, setCodePostal] = useState("");
+  const [codePostal, setCodePostal] = useState(inputState.zipCode);
   const [autoComplete, setAutoComplete] = useState([]);
 
   const fetchData = async () => {
@@ -63,14 +64,17 @@ const Location = ({ setPage, setInputState, inputState }) => {
                   fetchData();
                 }}
               ></input>
-              <select
-                value={codePostal}
-                onChange={event => {
-                  setCodePostal(event.target.value);
-                }}
-              >
-                {dropdown}
-              </select>
+              {codePostal ? (
+                <select
+                  className="select"
+                  value={codePostal}
+                  onChange={event => {
+                    setCodePostal(event.target.value);
+                  }}
+                >
+                  {dropdown}
+                </select>
+              ) : null}
             </div>
           </div>
         </div>
@@ -79,6 +83,7 @@ const Location = ({ setPage, setInputState, inputState }) => {
         <button className="gobackButton">
           <p onClick={() => setPage("situation")}>Précédent</p>
         </button>
+        <ProgressBar percentage={72} />
         <button
           className="nextStepButton"
           onClick={() => {

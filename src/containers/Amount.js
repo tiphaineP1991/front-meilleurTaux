@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Info from "../images/info.svg";
+import ProgressBar from "../components/ProgressBar";
 
-const Amount = ({ setPage, setInputState, inputState, initialState }) => {
-  const [estimated, setEstimated] = useState(0);
-  const [works, setWork] = useState(0);
+const Amount = ({ setPage, setInputState, inputState }) => {
+  const [estimated, setEstimated] = useState(inputState.amount.estimated);
+  const [works, setWorks] = useState(inputState.amount.works);
 
   let notarialFees = 0;
   {
-    initialState.state === "Neuf"
+    inputState.state === "Neuf"
       ? (notarialFees = estimated * 0.018)
       : (notarialFees = estimated * 0.0738);
   }
@@ -45,18 +46,18 @@ const Amount = ({ setPage, setInputState, inputState, initialState }) => {
               type="number"
               value={works}
               onChange={event => {
-                setWork(event.target.value);
+                setWorks(event.target.value);
               }}
             ></input>
           </div>
         </div>
         <div className="question">
-          <p>Fais de notaires *</p>
+          <p>Frais de notaires *</p>
           <div className="reponse">
             <div className="icon">
               <img className="info" src={Info}></img>
             </div>
-            <input type="number" value={notarialFees}></input>
+            <input type="number" value={notarialFees} readOnly></input>
           </div>
         </div>
         <div className="question">
@@ -65,7 +66,7 @@ const Amount = ({ setPage, setInputState, inputState, initialState }) => {
             <div className="icon">
               <img className="info" src={Info}></img>
             </div>
-            <input type="number" value={total}></input>
+            <input type="number" value={total} readOnly></input>
           </div>
         </div>
       </div>
@@ -73,6 +74,7 @@ const Amount = ({ setPage, setInputState, inputState, initialState }) => {
         <button className="gobackButton">
           <p onClick={() => setPage("location")}>Précédent</p>
         </button>
+        <ProgressBar percentage={89} />
         <button
           className="nextStepButton"
           onClick={() => {
