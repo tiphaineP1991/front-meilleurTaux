@@ -36,9 +36,15 @@ const Type = ({ setPage, setInputState, inputState }) => {
       </div>
       <div className="navButtons">
         <ProgressBar percentage={12} />
-        <button className="nextStepButton" onClick={() => setPage("state")}>
-          <p>Suivant</p>
-        </button>
+        {inputState.type ? (
+          <button className="nextStepButton" onClick={() => setPage("state")}>
+            <p>Suivant</p>
+          </button>
+        ) : (
+          <button className="nextStepButtonUnvalidate">
+            <p>Suivant</p>
+          </button>
+        )}
       </div>
     </div>
   );

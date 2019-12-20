@@ -74,16 +74,22 @@ const Contact = ({ setPage, inputState, setInputState, setId }) => {
           <p onClick={() => setPage("amount")}>Précédent</p>
         </button>
         <ProgressBar percentage={100} />
-        <button
-          className="nextStepButton"
-          onClick={() => {
-            setPage("end");
-            fetchData();
-            Cookies.remove("returnData");
-          }}
-        >
-          <p>Valider</p>
-        </button>
+        {isChecked === true && inputState.email ? (
+          <button
+            className="nextStepButton"
+            onClick={() => {
+              setPage("end");
+              fetchData();
+              Cookies.remove("returnData");
+            }}
+          >
+            <p>Valider</p>
+          </button>
+        ) : (
+          <button className="nextStepButtonUnvalidate">
+            <p>Valider</p>
+          </button>
+        )}
       </div>
     </div>
   );

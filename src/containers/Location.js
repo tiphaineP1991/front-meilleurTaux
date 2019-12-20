@@ -4,19 +4,19 @@ import axios from "axios";
 import ProgressBar from "../components/ProgressBar";
 
 const Location = ({ setPage, setInputState, inputState }) => {
-  const [codePostal, setCodePostal] = useState(inputState.zipCode);
+  const [zipCode, setzipCode] = useState(inputState.zipCode);
   const [autoComplete, setAutoComplete] = useState([]);
 
   const fetchData = async () => {
     const response = await axios.get(
-      "https://vicopo.selfbuild.fr/cherche/" + codePostal
+      "https://vicopo.selfbuild.fr/cherche/" + zipCode
     );
     setAutoComplete(response.data.cities);
   };
 
   useEffect(() => {
     fetchData();
-  }, [codePostal]);
+  }, [zipCode]);
 
   console.log(autoComplete);
   const tab = [];
@@ -57,19 +57,20 @@ const Location = ({ setPage, setInputState, inputState }) => {
             <div className="zipCode">
               <input
                 type="text"
-                value={codePostal}
+                value={zipCode}
                 placeholder="Entrez votre code postal"
                 onChange={event => {
-                  setCodePostal(event.target.value);
+                  setzipCode(event.target.value);
                   fetchData();
                 }}
               ></input>
-              {codePostal ? (
+              {zipCode ? (
                 <select
                   className="select"
-                  value={codePostal}
+                  value={zipCode}
                   onChange={event => {
-                    setCodePostal(event.target.value);
+                    setzipCode(event.target.value);
+                    setInputState({ ...inputState, zipCode: zipCode });
                   }}
                 >
                   {dropdown}
@@ -84,15 +85,20 @@ const Location = ({ setPage, setInputState, inputState }) => {
           <p onClick={() => setPage("situation")}>Précédent</p>
         </button>
         <ProgressBar percentage={72} />
-        <button
-          className="nextStepButton"
-          onClick={() => {
-            setPage("amount");
-            setInputState({ ...inputState, zipCode: codePostal });
-          }}
-        >
-          <p>Suivant</p>
-        </button>
+        {inputState.zipCode ? (
+          <button
+            className="nextStepButton"
+            onClick={() => {
+              setPage("amount");
+            }}
+          >
+            <p>Suivant</p>
+          </button>
+        ) : (
+          <button className="nextStepButtonUnvalidate">
+            <p>Suivant</p>
+          </button>
+        )}
       </div>
     </div>
   );

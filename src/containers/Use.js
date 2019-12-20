@@ -45,9 +45,18 @@ const Use = ({ setPage, setInputState, inputState }) => {
           <p onClick={() => setPage("state")}>Précédent</p>
         </button>
         <ProgressBar percentage={36} />
-        <button className="nextStepButton" onClick={() => setPage("situation")}>
-          <p>Suivant</p>
-        </button>
+        {inputState.use ? (
+          <button
+            className="nextStepButton"
+            onClick={() => setPage("situation")}
+          >
+            <p>Suivant</p>
+          </button>
+        ) : (
+          <button className="nextStepButtonUnvalidate">
+            <p>Suivant</p>
+          </button>
+        )}
       </div>
     </div>
   );

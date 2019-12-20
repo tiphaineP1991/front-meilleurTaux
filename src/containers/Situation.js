@@ -51,9 +51,18 @@ const Situation = ({ setPage, setInputState, inputState }) => {
           <p onClick={() => setPage("use")}>Précédent</p>
         </button>
         <ProgressBar percentage={53} />
-        <button className="nextStepButton" onClick={() => setPage("location")}>
-          <p>Suivant</p>
-        </button>
+        {inputState.situation ? (
+          <button
+            className="nextStepButton"
+            onClick={() => setPage("location")}
+          >
+            <p>Suivant</p>
+          </button>
+        ) : (
+          <button className="nextStepButtonUnvalidate">
+            <p>Suivant</p>
+          </button>
+        )}
       </div>
     </div>
   );

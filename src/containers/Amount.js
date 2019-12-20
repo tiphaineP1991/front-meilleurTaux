@@ -47,6 +47,15 @@ const Amount = ({ setPage, setInputState, inputState }) => {
               value={works}
               onChange={event => {
                 setWorks(event.target.value);
+                setInputState({
+                  ...inputState,
+                  amount: {
+                    estimated: estimated,
+                    works: works,
+                    notarialFees: notarialFees,
+                    total: total
+                  }
+                });
               }}
             ></input>
           </div>
@@ -75,23 +84,23 @@ const Amount = ({ setPage, setInputState, inputState }) => {
           <p onClick={() => setPage("location")}>Précédent</p>
         </button>
         <ProgressBar percentage={89} />
-        <button
-          className="nextStepButton"
-          onClick={() => {
-            setPage("contact");
-            setInputState({
-              ...inputState,
-              amount: {
-                estimated: estimated,
-                works: works,
-                notarialFees: notarialFees,
-                total: total
-              }
-            });
-          }}
-        >
-          <p>Suivant</p>
-        </button>
+        {inputState.amount.estimated &&
+        inputState.amount.works &&
+        inputState.amount.notarialFees &&
+        inputState.amount.total ? (
+          <button
+            className="nextStepButton"
+            onClick={() => {
+              setPage("contact");
+            }}
+          >
+            <p>Suivant</p>
+          </button>
+        ) : (
+          <button className="nextStepButtonUnvalidate">
+            <p>Suivant</p>
+          </button>
+        )}
       </div>
     </div>
   );
