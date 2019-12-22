@@ -92,7 +92,7 @@ const Form = () => {
             </div>
           </div>
           <div className="delete">
-            <Link to="/form">
+            <Link to="/forms">
               <span
                 className="deleteButton"
                 onClick={() => {
