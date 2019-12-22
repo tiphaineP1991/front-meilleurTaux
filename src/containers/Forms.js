@@ -4,13 +4,15 @@ import Url from "../Url";
 import { Link } from "react-router-dom";
 
 const BackOffice = () => {
+  // We create a state that represente the data we receive from the axios request
   const [forms, setForms] = useState([]);
+  // We create a boolean state to wait for the data do be downloaded
   const [isLoading, setIsLoading] = useState(true);
 
+  // We create a function to do the axios request to call for all forms created
   const fetchData = async () => {
     try {
       const response = await axios.get(Url.url + "/forms");
-      console.log(response.data.forms);
       setForms(response.data.forms);
       setIsLoading(false);
     } catch (error) {
@@ -41,6 +43,8 @@ const BackOffice = () => {
                 <div className="elem">Montant total</div>
               </div>
               {forms.map((elem, index) => {
+                // We do a map on the array forms to display every elements of forms
+                // We link the div of each element to the details form by concatenating the url with a param representing the elem's id
                 return (
                   <Link to={"/form/" + elem._id}>
                     <div key={index} className="line">

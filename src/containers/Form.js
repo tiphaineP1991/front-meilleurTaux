@@ -3,15 +3,18 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Url from "../Url";
 import { Link } from "react-router-dom";
-import cardLine from "../components/CardLine";
 import CardLine from "../components/CardLine";
-import form from "./Login";
 
 const Form = () => {
+  // We useParams to get back the id
   const { id } = useParams();
+
+  // We set a state to get the data
   const [form, setForm] = useState();
+  // We create a boolean state to wait for the data do be downloaded
   const [isLoading, setIsLoading] = useState(true);
 
+  // We create a function to do the axios request to call for all forms created
   const fetchData = async () => {
     try {
       const response = await axios.get(Url.url + "/form/" + id);
@@ -22,6 +25,7 @@ const Form = () => {
     }
   };
 
+  // We create a function to do the axios request to to delete the data by concatenating the url and the param id
   const deleteData = async () => {
     try {
       const response = await axios.post(Url.url + "/form/delete/" + id);
