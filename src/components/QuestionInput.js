@@ -1,6 +1,10 @@
 import React from "react";
 import Info from "../images/info.svg";
 
+// The question input is a component used in the page amount
+// Composed with a question and an anwer with an input
+// It received props with question, value and func
+
 const QuestionInput = ({ question, value, func }) => {
   return (
     <div className="question">

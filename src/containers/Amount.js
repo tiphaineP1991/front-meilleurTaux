@@ -3,9 +3,11 @@ import Footer from "../components/Footer";
 import QuestionInput from "../components/QuestionInput";
 
 const Amount = ({ setPage, setInputState, inputState }) => {
+  // We create 2 states, one for the first input estimated amount of the acquisition and one for the works
   const [estimated, setEstimated] = useState(inputState.amount.estimated);
   const [works, setWorks] = useState(inputState.amount.works);
 
+  // We create a constant to calculate the notarialFees 1.8% if the value "state" = neuf o" 7.38% if it is "ancien"
   let notarialFees = 0;
   {
     inputState.state === "Neuf"
@@ -13,6 +15,7 @@ const Amount = ({ setPage, setInputState, inputState }) => {
       : (notarialFees = estimated * 0.0738);
   }
 
+  // We create a constant to calculate the total amount of the 3 inputs and transform all value in Number
   let total = Number(estimated) + Number(works) + notarialFees;
 
   return (

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+// This page is accessible by clicking on the header button BackOffice.
+// There is a password hosted directly in the front
+// As so, it is not secure but is still do the job for this exercice
+
 const Forms = () => {
+  // we set a state for the password which will take the value of the input.
+  // If this input === password, a button appears to go to the back office
   const [password, setPassword] = useState("");
 
   return (

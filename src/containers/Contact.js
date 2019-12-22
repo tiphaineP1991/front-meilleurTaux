@@ -7,9 +7,11 @@ import Footer from "../components/Footer";
 import Cookies from "js-cookie";
 
 const Contact = ({ setPage, inputState, setInputState, setId }) => {
+  // We create 2 states to set up the emailAdress and to check that the input type checkbox's value equal true
   const [email, setEmail] = useState("");
   const [isChecked, setIsCheck] = useState(inputState.notification);
 
+  // We do an axios request to post all information in the global state and set the id with the response
   const fetchData = async () => {
     try {
       const response = await axios.post(Url.url + "/form/create", {
@@ -18,7 +20,6 @@ const Contact = ({ setPage, inputState, setInputState, setId }) => {
       setId(response.data._id);
     } catch (error) {
       alert("inscription non valide");
-      console.log("erreur ======>", error.message);
     }
   };
 

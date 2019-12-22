@@ -18,11 +18,16 @@ import Login from "./containers/Login";
 import Form from "./containers/Form";
 
 const App = () => {
-  const returnPage = Cookies.get("returnPage");
+  // We create a state id. This state is generate after we send the axios.post request page contact. This id will then be sent to the page "end" to give this id number to the user
   const [id, setId] = useState("");
 
+  // We create a cookie called returnPage with the state "page".
+  const returnPage = Cookies.get("returnPage");
+
+  // The state page allows the navigation between the differents containers without changing the path.
   const [page, setPage] = useState(returnPage);
 
+  // If returnPage is undefined, it means the user has never visited the website and so no cookies are stocked. You go on the first state of page (Type), else, you go on the last page you visited
   if (returnPage === undefined) {
     setPage("type");
     Cookies.set("returnPage", page);
@@ -30,9 +35,13 @@ const App = () => {
     Cookies.set("returnPage", page);
   }
 
+  // We create a cookie called returnData with the state inputState
   const returnData = Cookies.getJSON("returnData");
+  // The state inputState is a global state which will stocked all data you registered on the website and set the value with the cookie
+
   const [inputState, setInputState] = useState(returnData);
 
+  // The global state is the same as the model in the backend. At the beginning, it is empty.
   const initialState = {
     type: "",
     state: "",
@@ -49,14 +58,13 @@ const App = () => {
     notification: false
   };
 
+  // If cookies are empty, we set cookies with the empty initial state else we set the cookies with the data we received which is stocked in the global state
   if (returnData === undefined) {
     setInputState(initialState);
     Cookies.set("returnData", inputState);
   } else {
     Cookies.set("returnData", inputState);
   }
-
-  console.log("inputState ====>", inputState);
 
   return (
     <Router>

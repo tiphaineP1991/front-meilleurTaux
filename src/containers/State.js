@@ -5,11 +5,14 @@ import Cookies from "js-cookie";
 import Footer from "../components/Footer";
 
 const State = ({ setPage, setInputState, inputState }) => {
+  // we set the 2 values for the radio button
   const value1 = "Ancien";
   const value2 = "Neuf";
 
+  // we create the function which is used in all page and set the inputState's key with the value chosen byt the user (between the radioButton)
+  // we use this function when we choose a value. It also change the state page so we can directly go to the next page
+  // we use the spread operator to create a copie of the object and fill it
   const handleChange = event => {
-    Cookies.set("state", event.target.value);
     setInputState({ ...inputState, state: event.target.value });
     setPage("use");
   };

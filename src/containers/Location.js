@@ -4,9 +4,13 @@ import axios from "axios";
 import Footer from "../components/Footer";
 
 const Location = ({ setPage, setInputState, inputState }) => {
+  // We create a state zipCode which is set with the data of the global state, if empty, zipCode will be empty, if not, it will take the value you set
   const [zipCode, setzipCode] = useState(inputState.zipCode);
+  // we create an empty tab to stock the values received with the API Vicopo
   const [autoComplete, setAutoComplete] = useState([]);
 
+  // We create a function to get the values of the city or zipCode we write on the input
+  // We use an API called Vicopo by using the axios.get and adding the value of the state zipCode
   const fetchData = async () => {
     const response = await axios.get(
       "https://vicopo.selfbuild.fr/cherche/" + zipCode
@@ -18,15 +22,22 @@ const Location = ({ setPage, setInputState, inputState }) => {
     fetchData();
   }, [zipCode]);
 
-  console.log(autoComplete);
+  // We create an empty tab
   const tab = [];
+  // We loop on autoComplete data to look for the correspondant value in the list
   for (let i = 0; i < autoComplete.length; i++) {
     const key = autoComplete[i];
+    let code = key.code;
     let city = key.city;
-    tab.push(city);
+
+    // We fill the empty tab with city found on the loop and it's zipCode
+    tab.push(city + "-" + code);
   }
 
-  const dropdown = [<option value={undefined}>{undefined}</option>];
+  // We create a select with the value of the tab
+  const dropdown = [
+    <option value={undefined}>Sélectionnez votre ville</option>
+  ];
   for (let i = 0; i < tab.length; i++) {
     dropdown.push(<option value={tab[i]}>{tab[i]}</option>);
   }
